@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /proposal_responses/{responseId} {
+      // Public can submit only a minimal YES/NO response.
+      allow create: if request.resource.data.keys().hasOnly([
+        'recipientName','answer','proposalId','timestamp'
+      ])
+      && request.resource.data.recipientName == 'Siya'
+      && request.resource.data.proposalId == 'siya-proposal-2026'
+      && request.resource.data.answer in ['YES','NO']
+      && request.resource.data.timestamp == request.time;
+      // Only authenticated admins can read or change records.
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}

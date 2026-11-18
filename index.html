@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff0f5"><title>A Little Question for Siya ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Sacramento&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"><span>♥</span><span>♡</span><span>♥</span><span>♡</span><span>♥</span></div>
+  <header class="top"><span class="brand">a little something <b>♥</b></span><button id="musicToggle" class="music" type="button" aria-label="Toggle music">♫ <span>Music off</span></button></header>
+  <main>
+    <section id="welcome" class="screen hero">
+      <div class="eyebrow">MADE WITH A LITTLE COURAGE & A LOT OF HEART</div>
+      <div class="hero-heart">♡</div>
+      <h1>Hey, Siya<span class="pink">.</span></h1>
+      <p class="lead">I made a little something for you.</p>
+      <p class="sub">No pressure. Just a few words from my heart.</p>
+      <button class="primary" id="openBtn">Open my surprise <span>♡</span></button>
+      <div class="scroll-note">A tiny surprise awaits ↓</div>
+    </section>
+
+    <section id="memories" class="section hidden">
+      <div class="section-head"><div class="eyebrow">A FEW LITTLE MOMENTS</div><h2>Something worth <em>remembering</em></h2><p>Four little snapshots, each with its own place here.</p></div>
+      <div class="gallery">
+        <figure class="photo-card"><img src="assets/images/s.jpg" alt="Memory photo 1"><figcaption><span>01</span> A lovely little moment</figcaption></figure>
+        <figure class="photo-card"><img src="assets/images/i.jpg" alt="Memory photo 2"><figcaption><span>02</span> One for the memories</figcaption></figure>
+        <figure class="photo-card"><img src="assets/images/y.jpg" alt="Memory photo 3"><figcaption><span>03</span> A smile worth keeping</figcaption></figure>
+        <figure class="photo-card"><img src="assets/images/a.jpg" alt="Memory photo 4"><figcaption><span>04</span> Something special</figcaption></figure>
+      </div>
+      <div class="center"><button class="text-btn" id="letterBtn">There's a letter for you <span>→</span></button></div>
+    </section>
+
+    <section id="letter" class="section letter-section hidden">
+      <div class="letter-wrap">
+        <div class="envelope">💌</div><div class="eyebrow">A NOTE FROM ME TO YOU</div>
+        <h2>Dear Siya,</h2>
+        <div class="letter-copy">
+          <p>I don't know the perfect way to say this, but I wanted to be honest with you.</p>
+          <p>Your smile, your nature, and the little things that make you <em>you</em> have a way of making an ordinary day feel a little brighter.</p>
+          <p>I like you, Siya. I don't know what the future holds, and I don't want you to feel any pressure. I just wanted you to know how I feel.</p>
+          <p class="signoff">With a smile, <span>Shourya</span> ♡</p>
+        </div>
+        <button class="primary" id="questionBtn">One little question… <span>♡</span></button>
+      </div>
+    </section>
+
+    <section id="proposal" class="section proposal hidden">
+      <div class="proposal-heart">♡</div><div class="eyebrow">SO, HERE IT IS</div>
+      <h2>Siya, will you<br><em>be mine?</em></h2>
+      <p class="proposal-sub">I'd be really happy to know if you feel the same way. ❤️</p>
+      <div class="actions"><button id="yesBtn" class="yes">Yes, I'd love to! ❤️</button><button id="noBtn" class="no">No 🥺</button></div>
+      <p id="reaction" class="reaction" aria-live="polite">Whatever your answer, thank you for hearing me out.</p>
+      <p class="gentle-note">Take your time. Your answer is yours, and I'll respect it.</p>
+    </section>
+    <section id="ending" class="section ending hidden">
+      <div class="celebrate">♡ ✨ ♡</div><div class="eyebrow">A MOMENT I'LL REMEMBER</div>
+      <h2 id="endingTitle">Thank you, Siya.</h2><p id="endingText">Your answer means a lot to me.</p>
+      <button class="text-btn" id="replayBtn">Read it again ↺</button>
+    </section>
+  </main>
+  <footer>made with <span>♥</span> just for Siya</footer>
+  <audio id="bgMusic" loop preload="none"><!-- Add your own royalty-free audio file as assets/music.mp3 if desired --><source src="assets/music.mp3" type="audio/mpeg"></audio>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="script.js"></script>
+</body></html>
