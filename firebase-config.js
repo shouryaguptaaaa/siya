@@ -1,11 +1,10 @@
-// 1) Create a Firebase project at https://console.firebase.google.com/
-// 2) Register a Web App and paste its config below.
-// These are public web-app configuration values, NOT admin credentials.
+
 export const firebaseConfig = {
-  apiKey: "PASTE_YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAhQNa4mej1mv4MEKeFNNsKP58KPkYPRpM",
+  authDomain: "siya-proposal.firebaseapp.com",
+  projectId: "siya-proposal",
+  storageBucket: "siya-proposal.firebasestorage.app",
+  messagingSenderId: "286435768541",
+  appId: "1:286435768541:web:4a6d173ea74ca85d43c334",
+  measurementId: "G-7SK4W7HFV0"
 };
