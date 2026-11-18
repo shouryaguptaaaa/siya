@@ -58,7 +58,7 @@ async function saveResponse(answer) {
   try {
     await addDoc(collection(db, "proposal_responses"), {
       recipientName: "Siya",
-      answer: answer,
+      answer,
       proposalId: "siya-proposal-2026",
       timestamp: serverTimestamp()
     });
@@ -68,7 +68,7 @@ async function saveResponse(answer) {
   }
 }
 
-// NO button - playful movement and flirting messages
+// NO BUTTON - unlimited playful messages
 const noBtn = $("noBtn");
 const reaction = $("reaction");
 
@@ -112,20 +112,20 @@ function moveNoButton() {
   lineIndex++;
 }
 
-// Desktop: move when mouse approaches
+// Desktop hover
 noBtn.addEventListener("pointerenter", event => {
   if (event.pointerType === "mouse") {
     moveNoButton();
   }
 });
 
-// Mobile and desktop: move when clicked
+// Click / tap
 noBtn.addEventListener("click", event => {
   event.preventDefault();
   moveNoButton();
 });
 
-// YES button - love letter
+// YES BUTTON - love letter
 $("yesBtn").addEventListener("click", async () => {
 
   $("endingTitle").textContent =
@@ -180,9 +180,7 @@ $("yesBtn").addEventListener("click", async () => {
 
 // Celebration animation
 function createHearts() {
-
   for (let i = 0; i < 35; i++) {
-
     const heart = document.createElement("div");
 
     heart.textContent = ["❤️", "💕", "💗", "✨"][
@@ -228,7 +226,6 @@ function showToast(message) {
 const audio = $("bgMusic");
 
 $("musicToggle").addEventListener("click", async () => {
-
   if (audio.paused) {
     try {
       await audio.play();
@@ -240,5 +237,4 @@ $("musicToggle").addEventListener("click", async () => {
     audio.pause();
     $("musicToggle").innerHTML = "♫ <span>Music off</span>";
   }
-
 });
