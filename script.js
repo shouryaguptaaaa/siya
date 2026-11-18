@@ -24,6 +24,7 @@ function show(id) {
   sections.forEach(section => {
     $(section).classList.toggle("hidden", section !== id);
   });
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -45,7 +46,7 @@ try {
     db = getFirestore(app);
   }
 } catch (error) {
-  console.error(error);
+  console.error("Firebase error:", error);
 }
 
 async function saveResponse(answer) {
@@ -67,57 +68,64 @@ async function saveResponse(answer) {
   }
 }
 
-// NO button playful movement
+// NO button - playful movement and flirting messages
 const noBtn = $("noBtn");
-const actions = document.querySelector(".actions");
+const reaction = $("reaction");
 
-const messages = [
-  "Arey Siya, ek baar aur socho na! 🥺",
-  "Itni jaldi NO? ❤️",
-  "Please ek baar dil se socho! 🥹",
-  "Ek YES se meri smile aa jayegi! 😭",
-  "Ek baar phir soch lo! 💗"
+const flirtingLines = [
+  "Siyaaa, ek baar aur socho na! 🥺❤️",
+  "Tumhari smile meri favourite hai! 😘",
+  "Arey madam, dil ka mamla hai! 💗",
+  "Shourya ko itna bhi mat tadpao! 😂",
+  "Ek YES se mera din ban jayega! 🥹",
+  "Tumhare liye special surprise banaya hai! 💌",
+  "Itni cute hokar NO? 😭",
+  "Dil ki baat samajh jao na! 🌹",
+  "Madam ji, ek chance toh banta hai! 🎀",
+  "Tumhari ek smile hi kaafi hai! ❤️",
+  "Kya YES button se dosti nahi karogi? 😍",
+  "Please ek baar dil se socho! 💕",
+  "Tumhare liye toh wait bhi kar sakta hoon! 🌷",
+  "Aaj toh YES sunne ka mann hai! 🥺"
 ];
 
-let noCount = 0;
+let lineIndex = 0;
 
+function moveNoButton() {
+  const rect = noBtn.getBoundingClientRect();
+
+  const maxX = Math.max(10, window.innerWidth - rect.width - 15);
+  const maxY = Math.max(110, window.innerHeight - rect.height - 20);
+
+  const x = 10 + Math.random() * Math.max(0, maxX - 10);
+  const y = 100 + Math.random() * Math.max(0, maxY - 100);
+
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+  noBtn.style.transform = "none";
+  noBtn.style.zIndex = "9999";
+
+  reaction.textContent =
+    flirtingLines[lineIndex % flirtingLines.length];
+
+  lineIndex++;
+}
+
+// Desktop: move when mouse approaches
 noBtn.addEventListener("pointerenter", event => {
-  if (event.pointerType !== "mouse") return;
-
-  const x = Math.random() * 120 - 60;
-  const y = Math.random() * 65 - 32;
-
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
-
-noBtn.addEventListener("click", async () => {
-  noBtn.style.transform = "translate(0, 0)";
-
-  $("reaction").textContent =
-    messages[noCount % messages.length];
-
-  noCount++;
-
-  // Record her actual NO response
-  await saveResponse("NO");
-
-  // Allow her to make her choice freely
-  if (noCount >= 2) {
-    $("reaction").textContent =
-      "I understand, Siya. Thank you for being honest. ❤️";
-
-    noBtn.textContent = "Confirm my answer";
-    noBtn.onclick = async () => {
-      $("endingTitle").textContent = "Thank you, Siya ❤️";
-      $("endingText").textContent =
-        "Thank you for being honest with me. I'll respect your feelings and always wish you happiness.";
-
-      show("ending");
-    };
+  if (event.pointerType === "mouse") {
+    moveNoButton();
   }
 });
 
-// YES button
+// Mobile and desktop: move when clicked
+noBtn.addEventListener("click", event => {
+  event.preventDefault();
+  moveNoButton();
+});
+
+// YES button - love letter
 $("yesBtn").addEventListener("click", async () => {
 
   $("endingTitle").textContent =
@@ -195,7 +203,7 @@ function createHearts() {
 
     requestAnimationFrame(() => {
       heart.style.transform =
-        `translateY(${window.innerHeight + 100}px) rotate(360deg)`;
+        \`translateY(\${window.innerHeight + 100}px) rotate(360deg)\`;
 
       heart.style.opacity = "0";
     });
@@ -234,4 +242,3 @@ $("musicToggle").addEventListener("click", async () => {
   }
 
 });
-
