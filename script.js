@@ -234,3 +234,4 @@ $("musicToggle").addEventListener("click", async () => {
   }
 
 });
+
