@@ -20,15 +20,18 @@ const sections = [
   "ending"
 ];
 
+// Navigation
 function show(id) {
   sections.forEach(section => {
-    $(section).classList.toggle("hidden", section !== id);
+    const element = $(section);
+    if (element) {
+      element.classList.toggle("hidden", section !== id);
+    }
   });
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Navigation
 $("openBtn").onclick = () => show("memories");
 $("letterBtn").onclick = () => show("letter");
 $("questionBtn").onclick = () => show("proposal");
@@ -58,7 +61,7 @@ async function saveResponse(answer) {
   try {
     await addDoc(collection(db, "proposal_responses"), {
       recipientName: "Siya",
-      answer,
+      answer: answer,
       proposalId: "siya-proposal-2026",
       timestamp: serverTimestamp()
     });
@@ -149,7 +152,9 @@ $("yesBtn").addEventListener("click", async () => {
 
 // Hearts animation
 function createHearts() {
+
   for (let i = 0; i < 35; i++) {
+
     const heart = document.createElement("div");
 
     heart.textContent = ["❤️", "💕", "💗", "✨"][
@@ -169,18 +174,21 @@ function createHearts() {
     document.body.appendChild(heart);
 
     requestAnimationFrame(() => {
+
       heart.style.transform =
-        \`translateY(\${window.innerHeight + 100}px) rotate(360deg)\`;
+        `translateY(${window.innerHeight + 100}px) rotate(360deg)`;
 
       heart.style.opacity = "0";
+
     });
 
     setTimeout(() => heart.remove(), 3100);
   }
 }
 
-// Toast
+// Toast notification
 function showToast(message) {
+
   const toast = $("toast");
 
   toast.textContent = message;
@@ -195,15 +203,25 @@ function showToast(message) {
 const audio = $("bgMusic");
 
 $("musicToggle").addEventListener("click", async () => {
+
   if (audio.paused) {
+
     try {
       await audio.play();
-      $("musicToggle").innerHTML = "♫ <span>Music on</span>";
+
+      $("musicToggle").innerHTML =
+        "♫ <span>Music on</span>";
+
     } catch {
       showToast("Please add your music file first.");
     }
+
   } else {
+
     audio.pause();
-    $("musicToggle").innerHTML = "♫ <span>Music off</span>";
+
+    $("musicToggle").innerHTML =
+      "♫ <span>Music off</span>";
+
   }
 });
